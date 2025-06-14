@@ -12,6 +12,7 @@
     "@types/node": "^24.0.1"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.5.0"
   }
 }
