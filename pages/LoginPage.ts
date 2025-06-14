@@ -4,20 +4,20 @@ export class LoginPage {
   readonly page: Page;
   readonly brand: Locator;
   readonly userNameLabel: Locator;
-  readonly userNameInput: Locator;
+  readonly userNameTextBox: Locator;
   readonly passwordLabel: Locator;
-  readonly passwordInput: Locator;
+  readonly passwordTextBox: Locator;
   readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.brand = page.getByRole('img', { name: 'company-branding' });
     this.userNameLabel = page.getByText('Username', { exact: true });
-    this.userNameInput = page.getByRole('textbox', {
+    this.userNameTextBox = page.getByRole('textbox', {
       name: 'Username',
     });
     this.passwordLabel = page.getByText('Password', { exact: true });
-    this.passwordInput = page.getByRole('textbox', {
+    this.passwordTextBox = page.getByRole('textbox', {
       name: 'Password',
     });
     this.loginButton = page.getByRole('button', { name: 'Login' });
@@ -38,8 +38,8 @@ export class LoginPage {
    * @param password
    */
   async loginToOrangeHrm(username: string, password: string) {
-    await this.userNameInput.fill(username);
-    await this.passwordInput.fill(password);
+    await this.userNameTextBox.fill(username);
+    await this.passwordTextBox.fill(password);
     await this.loginButton.click();
   }
 }
