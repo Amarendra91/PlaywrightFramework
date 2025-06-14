@@ -27,7 +27,7 @@ export class LoginPage {
    * Open OrangeHRM application URL in browser
    */
   async lunchOrangeHrm() {
-    await this.page.goto(`${process.env.BASE_URL}`);
+    await this.page.goto(`${process.env.BASE_URL}/web/index.php/auth/login`);
   }
 
   /**
