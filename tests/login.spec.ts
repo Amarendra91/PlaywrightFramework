@@ -1,6 +1,11 @@
-import { expect, test } from '../fixtures/pom-fixture';
+import { expect, test } from '../fixtures/common-fixture';
 
-test('lunch url and login', async ({ loginPage }) => {
+test('Navigate to application url and login.', async ({
+  loginPage,
+  commonUtils,
+}) => {
+  const decryptedUserName = commonUtils.decryptData(process.env.USER_NAME!);
+  const decryptedPassword = commonUtils.decryptData(process.env.PASSWORD!);
   await loginPage.lunchOrangeHrm();
   await expect(loginPage.brand).toBeVisible();
   await expect(loginPage.userNameLabel).toBeVisible();
@@ -13,5 +18,5 @@ test('lunch url and login', async ({ loginPage }) => {
   await expect(loginPage.passwordTextBox).toBeEditable();
   await expect(loginPage.loginButton).toBeVisible();
   await expect(loginPage.loginButton).toBeEnabled();
-  await loginPage.loginToOrangeHrm('Admin', 'admin123');
+  await loginPage.loginToOrangeHrm(decryptedUserName, decryptedPassword);
 });
