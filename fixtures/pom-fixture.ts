@@ -10,5 +10,3 @@ export const test = baseTest.extend<PomFixtures>({
     await use(new LoginPage(page));
   },
 });
-
-export { expect } from '@playwright/test';
