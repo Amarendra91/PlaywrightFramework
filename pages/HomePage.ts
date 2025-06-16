@@ -9,6 +9,7 @@ export class HomePage {
   readonly passwordLabel: Locator;
   readonly passwordTextBox: Locator;
   readonly loginButton: Locator;
+  readonly invalidCredentialsErrorAlert: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,18 +24,21 @@ export class HomePage {
       name: 'Password',
     });
     this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.invalidCredentialsErrorAlert = page
+      .getByRole('alert')
+      .locator('div')
+      .filter({ hasText: 'Invalid credentials' });
   }
 
   /**
    * Open OrangeHRM application URL in browser
    */
   async goToLoginPage() {
-    // await this.page.goto(`${process.env.BASE_URL}/web/index.php/auth/login`);
     await this.page.goto('/');
   }
 
   /**
-   * Login to OrangeHRM application
+   * Login to OrangeHRM application with valid username and valid password
    * @param username
    * @param password
    */
