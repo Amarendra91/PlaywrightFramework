@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { test } from '../fixtures/common-fixture';
 
 test('Login session storage for reusability.', async ({
