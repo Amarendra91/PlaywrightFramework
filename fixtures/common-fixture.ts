@@ -1,4 +1,4 @@
-import { test as basetest } from '../fixtures/pom-fixture';
+import { test as basetest } from './pom-fixture';
 import CommonUtils from '../utils/CommonUtils';
 
 type CommonFixtureType = {
@@ -7,8 +7,6 @@ type CommonFixtureType = {
 
 export const test = basetest.extend<CommonFixtureType>({
   commonUtils: async ({}, use) => {
-    use(new CommonUtils());
+    await use(new CommonUtils());
   },
 });
-
-export { expect } from '@playwright/test';

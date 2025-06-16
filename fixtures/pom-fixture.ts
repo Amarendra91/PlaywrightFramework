@@ -1,12 +1,18 @@
 import { test as baseTest } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { HomePage } from '../pages/HomePage';
+import { DashboardPage } from '../pages/DashboardPage';
 
 type PomFixtures = {
-  loginPage: LoginPage;
+  homePage: HomePage;
+  dashboardpage: DashboardPage;
 };
 
 export const test = baseTest.extend<PomFixtures>({
-  loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
+  homePage: async ({ page }, use) => {
+    await use(new HomePage(page));
+  },
+
+  dashboardpage: async ({ page }, use) => {
+    await use(new DashboardPage(page));
   },
 });
