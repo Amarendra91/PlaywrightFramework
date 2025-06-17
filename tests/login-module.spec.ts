@@ -79,6 +79,7 @@ test('Verify user cannot log in with out providing both username and password.',
   await expect(homePage.mandatoryFieldValidationError.first()).toBeVisible();
   await expect(homePage.mandatoryFieldValidationError.nth(1)).toBeVisible();
   await homePage.usernameTextBox.fill(correctUsername);
+  await expect(homePage.mandatoryFieldValidationError).toBeVisible();
   await homePage.passwordTextBox.fill(correctPassword);
   await expect(homePage.mandatoryFieldValidationError).not.toBeVisible();
 });
