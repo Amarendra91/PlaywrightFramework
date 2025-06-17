@@ -4,19 +4,20 @@ export class HomePage {
   readonly page: Page;
   readonly brand: Locator;
   readonly loginHeader: Locator;
-  readonly userNameLabel: Locator;
-  readonly userNameTextBox: Locator;
+  readonly usernameLabel: Locator;
+  readonly usernameTextBox: Locator;
   readonly passwordLabel: Locator;
   readonly passwordTextBox: Locator;
   readonly loginButton: Locator;
   readonly invalidCredentialsErrorAlert: Locator;
+  readonly mandatoryFieldValidationError: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.brand = page.getByRole('img', { name: 'company-branding' });
     this.loginHeader = page.getByRole('heading', { name: 'Login' });
-    this.userNameLabel = page.getByText('Username', { exact: true });
-    this.userNameTextBox = page.getByRole('textbox', {
+    this.usernameLabel = page.getByText('Username', { exact: true });
+    this.usernameTextBox = page.getByRole('textbox', {
       name: 'Username',
     });
     this.passwordLabel = page.getByText('Password', { exact: true });
@@ -28,6 +29,7 @@ export class HomePage {
       .getByRole('alert')
       .locator('div')
       .filter({ hasText: 'Invalid credentials' });
+    this.mandatoryFieldValidationError = page.getByText('Required');
   }
 
   /**
@@ -43,7 +45,7 @@ export class HomePage {
    * @param password
    */
   async login(username: string, password: string) {
-    await this.userNameTextBox.fill(username);
+    await this.usernameTextBox.fill(username);
     await this.passwordTextBox.fill(password);
     await this.loginButton.click();
   }
