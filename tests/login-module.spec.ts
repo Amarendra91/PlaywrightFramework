@@ -9,10 +9,10 @@ test.use({ storageState: { cookies: [], origins: [] } });
 test('Verify OrangeHRM landing page.', async ({ goToLoginPage, homePage }) => {
   await expect(homePage.brand).toBeVisible();
   await expect(homePage.loginHeader).toBeVisible();
-  await expect(homePage.userNameLabel).toBeVisible();
-  await expect(homePage.userNameTextBox).toBeVisible();
-  await expect(homePage.userNameTextBox).toBeEnabled();
-  await expect(homePage.userNameTextBox).toBeEditable();
+  await expect(homePage.usernameLabel).toBeVisible();
+  await expect(homePage.usernameTextBox).toBeVisible();
+  await expect(homePage.usernameTextBox).toBeEnabled();
+  await expect(homePage.usernameTextBox).toBeEditable();
   await expect(homePage.passwordLabel).toBeVisible();
   await expect(homePage.passwordTextBox).toBeVisible();
   await expect(homePage.passwordTextBox).toBeEnabled();
@@ -63,4 +63,58 @@ test('Verify user cannot log in with an incorrect username and incorrect passwor
   );
 });
 
-// Add test for empty username password
+test('Verify user cannot log in with out providing both username and password.', async ({
+  goToLoginPage,
+  homePage,
+  commonUtils,
+}) => {
+  const correctUsername: string = commonUtils.decryptData(
+    process.env.USER_NAME!
+  );
+  const correctPassword: string = commonUtils.decryptData(
+    process.env.PASSWORD!
+  );
+  // click log in button without providing username and password
+  await homePage.loginButton.click();
+  await expect(homePage.mandatoryFieldValidationError.first()).toBeVisible();
+  await expect(homePage.mandatoryFieldValidationError.nth(1)).toBeVisible();
+  await homePage.usernameTextBox.fill(correctUsername);
+  await homePage.passwordTextBox.fill(correctPassword);
+  await expect(homePage.mandatoryFieldValidationError).not.toBeVisible();
+});
+
+test('Verify user cannot log in by only providing username.', async ({
+  goToLoginPage,
+  homePage,
+  commonUtils,
+}) => {
+  const correctUsername: string = commonUtils.decryptData(
+    process.env.USER_NAME!
+  );
+  const correctPassword: string = commonUtils.decryptData(
+    process.env.PASSWORD!
+  );
+  await homePage.usernameTextBox.fill(correctUsername);
+  await homePage.loginButton.click();
+  await expect(homePage.mandatoryFieldValidationError).toBeVisible();
+  await homePage.passwordTextBox.fill(correctPassword);
+  await expect(homePage.mandatoryFieldValidationError).not.toBeVisible();
+});
+
+test('Verify user cannot log in by only providing password.', async ({
+  goToLoginPage,
+  homePage,
+  commonUtils,
+}) => {
+  const correctUsername: string = commonUtils.decryptData(
+    process.env.USER_NAME!
+  );
+  const correctPassword: string = commonUtils.decryptData(
+    process.env.PASSWORD!
+  );
+  await homePage.passwordTextBox.fill(correctPassword);
+  await homePage.loginButton.click();
+  await expect(homePage.mandatoryFieldValidationError).toBeVisible();
+  await homePage.usernameTextBox.fill(correctUsername);
+  await expect(homePage.mandatoryFieldValidationError).not.toBeVisible();
+});
