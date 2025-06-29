@@ -37,6 +37,9 @@ export class HomePage {
    */
   async goToLoginPage() {
     await this.page.goto('/');
+    await this.page.waitForURL(
+      `${process.env.BASE_URL}/web/index.php/auth/login`
+    );
   }
 
   /**
