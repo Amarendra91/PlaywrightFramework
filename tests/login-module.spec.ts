@@ -6,7 +6,7 @@ import loginModuleTestData from '../test-data/login-module.json';
  */
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test('Verify OrangeHRM landing page.', async ({ goToLoginPage, homePage }) => {
+test('Verify OrangeHRM landing page.', async ({ homePage }) => {
   await expect(homePage.brand).toBeVisible();
   await expect(homePage.loginHeader).toBeVisible();
   await expect(homePage.usernameLabel).toBeVisible();
@@ -22,7 +22,6 @@ test('Verify OrangeHRM landing page.', async ({ goToLoginPage, homePage }) => {
 });
 
 test('Verify user cannot log in with an incorrect username and correct password.', async ({
-  goToLoginPage,
   homePage,
   commonUtils,
 }) => {
@@ -36,7 +35,6 @@ test('Verify user cannot log in with an incorrect username and correct password.
 });
 
 test('Verify user cannot log in with an correct username and incorrect password.', async ({
-  goToLoginPage,
   homePage,
   commonUtils,
 }) => {
@@ -50,9 +48,7 @@ test('Verify user cannot log in with an correct username and incorrect password.
 });
 
 test('Verify user cannot log in with an incorrect username and incorrect password.', async ({
-  goToLoginPage,
   homePage,
-  commonUtils,
 }) => {
   await homePage.login(
     loginModuleTestData.wrong_username,
@@ -64,7 +60,6 @@ test('Verify user cannot log in with an incorrect username and incorrect passwor
 });
 
 test('Verify user cannot log in with out providing both username and password.', async ({
-  goToLoginPage,
   homePage,
   commonUtils,
 }) => {
@@ -85,7 +80,6 @@ test('Verify user cannot log in with out providing both username and password.',
 });
 
 test('Verify user cannot log in by only providing username.', async ({
-  goToLoginPage,
   homePage,
   commonUtils,
 }) => {
@@ -103,7 +97,6 @@ test('Verify user cannot log in by only providing username.', async ({
 });
 
 test('Verify user cannot log in by only providing password.', async ({
-  goToLoginPage,
   homePage,
   commonUtils,
 }) => {
