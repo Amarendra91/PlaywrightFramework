@@ -4,6 +4,7 @@ export class DashboardPage {
   readonly page: Page;
   readonly userIconMenu: Locator;
   readonly logoutButton: Locator;
+  readonly headerTitle: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -11,6 +12,7 @@ export class DashboardPage {
       .getByRole('banner')
       .getByRole('img', { name: 'profile picture' });
     this.logoutButton = page.getByRole('menuitem', { name: 'Logout' });
+    this.headerTitle = page.locator('.oxd-topbar-header-title');
   }
 
   async logout() {
