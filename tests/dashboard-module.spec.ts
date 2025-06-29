@@ -5,7 +5,7 @@ test.describe('Verify Dashbaoard page functionality.', async () => {
   test(
     'Verify user navigated to OrangeHRM dashbaord page and logout from OrangeHRM application.',
     { tag: '@Smoke' },
-    async ({ goToDashbaordPage, dashboardpage, homePage }) => {
+    async ({ bypassLoginPage, dashboardpage, homePage }) => {
       await test.step('Verify header title on dashboard page.', async () => {
         await expect(dashboardpage.headerTitle).toContainText(
           dashboardModuleTestData.header_title
