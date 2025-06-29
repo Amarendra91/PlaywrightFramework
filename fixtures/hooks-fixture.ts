@@ -1,11 +1,11 @@
 import { test as baseTest } from './common-fixture';
 
 type HooksFixtureType = {
-  goToLoginPage: any;
+  goToDashbaordPage: any;
 };
 
 export const test = baseTest.extend<HooksFixtureType>({
-  goToLoginPage: async ({ homePage }, use: any) => {
+  goToDashbaordPage: async ({ homePage }, use: any) => {
     await homePage.goToLoginPage();
     await use();
   },
