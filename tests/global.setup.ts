@@ -9,6 +9,7 @@ test('Login session storage for reusability.', async ({
   const decryptedPassword = commonUtils.decryptData(process.env.PASSWORD!);
 
   await homePage.goToLoginPage();
+  await page.waitForURL(`${process.env.BASE_URL}/web/index.php/auth/login`);
   await homePage.login(decryptedUserName, decryptedPassword);
   await page.waitForURL(
     `${process.env.BASE_URL}/web/index.php/dashboard/index`
