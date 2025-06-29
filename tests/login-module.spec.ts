@@ -1,11 +1,15 @@
 import { test, expect } from '../fixtures/hooks-fixture';
 import loginModuleTestData from '../test-data/login-module.json';
 
+/**
+ * This test is to ignore global set up.
+ */
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe('Verify Login page functionality.', async () => {
-  /**
-   * This test is to ignore global set up.
-   */
-  test.use({ storageState: { cookies: [], origins: [] } });
+  test.beforeEach(async ({ homePage }) => {
+    await homePage.goToLoginPage();
+  });
 
   test(
     'Verify OrangeHRM login page.',
