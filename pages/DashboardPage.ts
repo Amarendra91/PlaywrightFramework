@@ -17,6 +17,9 @@ export class DashboardPage {
       .filter({ has: page.getByRole('heading') });
   }
 
+  /**
+   * Logout from OranageHRM application
+   */
   async logout() {
     await this.userIconMenu.click();
     await expect(this.logoutButton).toBeVisible();
