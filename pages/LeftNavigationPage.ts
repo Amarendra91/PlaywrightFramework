@@ -9,6 +9,9 @@ export class LeftNavigationPage {
     this.pimLink = page.getByRole('link', { name: 'PIM' });
   }
 
+  /**
+   * Navigate to PIM module
+   */
   async openPimModule(): Promise<void> {
     this.pimLink.click();
   }
