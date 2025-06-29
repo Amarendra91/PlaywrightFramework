@@ -7,6 +7,7 @@ test.describe('Verify Dashbaoard page functionality.', async () => {
     { tag: '@Smoke' },
     async ({ dashboardpage, homePage }) => {
       await test.step('Verify page header title.', async () => {
+        await homePage.goToLoginPage();
         await expect(dashboardpage.headerTitle).toContainText(
           dashboardModuleTestData.header_title
         );
