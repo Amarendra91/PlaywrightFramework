@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test_demo": "cross-env ENV_NAME=demo npx playwright test --headed",
-    "test_dev": "cross-env ENV_NAME=dev npx playwright test --headed"
+    "test_dev": "cross-env ENV_NAME=dev npx playwright test --headed",
+    "ui_mode": "npx playwright test --ui"
   },
   "keywords": [],
   "author": "",
