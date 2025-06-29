@@ -12,7 +12,9 @@ export class DashboardPage {
       .getByRole('banner')
       .getByRole('img', { name: 'profile picture' });
     this.logoutButton = page.getByRole('menuitem', { name: 'Logout' });
-    this.headerTitle = page.locator('.oxd-topbar-header-title');
+    this.headerTitle = page
+      .locator('.oxd-topbar-header-title')
+      .filter({ has: page.getByRole('heading') });
   }
 
   async logout() {
