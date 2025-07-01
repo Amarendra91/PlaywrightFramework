@@ -1,5 +1,6 @@
 name: playwright_web_test
-run_name: Web E2E Test
+run-name: Web E2E Test
+
 on:
   push:
     branches: [main, master]
