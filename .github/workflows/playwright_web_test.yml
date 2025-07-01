@@ -17,8 +17,8 @@ on:
         options:
           - demo
           - dev
-      test_type:
-        description: 'Choose test type'
+      tag:
+        description: 'Test tag to run (e.g., smoke, regression)'
         required: true
         default: Smoke
         type: choice
@@ -47,12 +47,11 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Set Test Type
-        run: |
-          echo "TEST_TYPE=@${{inputs.test_type}}" >> $GITHUB_ENV
-        if: ${{inputs.test_type}}
       - name: Run Playwright tests with Secret Key
-        run: SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep ${{env.TEST_TYPE}}
+        run: |
+          TAG=${{ github.event.inputs.tag }}
+          echo "Running $TAG tests"
+          SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep @$TAG
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
