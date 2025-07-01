@@ -47,19 +47,23 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Determine test tag
-        id: tag
+      # - name: Determine test tag
+      #   id: tag
+      #   run: |
+      #     # Use tag from workflow_dispatch or default to 'Smoke'
+      #     if [ -n "${{ github.event.inputs.tag }}" ]; then
+      #       echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+      #     else
+      #       echo "tag=Smoke" >> $GITHUB_OUTPUT
+      #     fi
+      - name: Run Playwright tests
+        # run: |
+        #   echo "Running tests with tag: ${{ steps.tag.outputs.tag }}"
+        #   SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep "@${{ steps.tag.outputs.tag }}"
         run: |
-          # Use tag from workflow_dispatch or default to 'Smoke'
-          if [ -n "${{ github.event.inputs.tag }}" ]; then
-            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
-          else
-            echo "tag=Smoke" >> $GITHUB_OUTPUT
-          fi
-      - name: Run Playwright tests with Secret Key and test tag
-        run: |
-          echo "Running tests with tag: ${{ steps.tag.outputs.tag }}"
-          SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep "@${{ steps.tag.outputs.tag }}"
+          TAG = ${{ github.event.inputs.tag || 'Smoke' }}
+          echo "Running $TAG tests with SECRET_KEY"
+          SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep @$TAG
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
