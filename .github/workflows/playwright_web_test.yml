@@ -4,12 +4,40 @@ run-name: E2E Web tests
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
+
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Choose environment'
+        required: true
+        default: demo
+        type: choice
+        options:
+          - demo
+          - dev
+      test_type:
+        description: 'Choose test type'
+        required: true
+        default: Smoke
+        type: choice
+        options:
+          - Smoke
+          - Regression
+
 jobs:
   test:
-    timeout-minutes: 60
+    # timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+
+    env:
+      BASE_URL: ${{ secrets.BASE_URL }}
+      USER_NAME: ${{ secrets.USER_NAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,8 +47,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Playwright tests with Secret Key
+        run: SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
