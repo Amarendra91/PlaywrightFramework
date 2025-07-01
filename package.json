@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_demo": "cross-env ENV_NAME=demo npx playwright test --headed",
-    "test_dev": "cross-env ENV_NAME=dev npx playwright test --headed",
-    "ui_mode": "npx playwright test --ui"
+    "web_test_demo": "cross-env ENV_NAME=demo npx playwright test --project=web",
+    "web_test_dev": "cross-env ENV_NAME=dev npx playwright test --project=web",
+    "web_test_ui_mode": "npx playwright test --project=web --ui",
+    "api_test_ui_mode": "npx playwright test --project=api --ui"
   },
   "keywords": [],
   "author": "",
