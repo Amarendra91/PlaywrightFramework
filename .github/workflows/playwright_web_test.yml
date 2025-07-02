@@ -67,7 +67,7 @@ jobs:
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
         with:
-          report-path: './ctrf/*.json'
+          report-path: 'playwright-report/ctrf/*.json'
           summary-report: true
           failed-report: true
           flaky-report: true
