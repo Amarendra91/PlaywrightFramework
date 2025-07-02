@@ -14,7 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.53.0",
-    "@types/node": "^24.0.1"
+    "@types/node": "^24.0.1",
+    "playwright-ctrf-json-reporter": "^0.0.21"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
