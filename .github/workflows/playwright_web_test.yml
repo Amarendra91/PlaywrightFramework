@@ -44,7 +44,7 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Determine test tag
+      - name: Determine Test Tagging
         id: tag
         run: |
           # Use tag from workflow_dispatch or default to 'Smoke'
@@ -57,9 +57,22 @@ jobs:
         run: |
           echo "Running tests with tag: ${{ steps.tag.outputs.tag }}"
           SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep "@${{ steps.tag.outputs.tag }}"
-      - uses: actions/upload-artifact@v4
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: './ctrf/*.json'
+          summary-report: true
+          failed-report: true
+          flaky-report: true
+          insights-report: true
+          test-report: true
+          # Order reports with the most important information first
+          report-order: 'summary-report,failed-report,flaky-report,insights-report,test-report'
+        if: always()
