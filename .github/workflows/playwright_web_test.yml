@@ -77,7 +77,6 @@ jobs:
           report-order: 'summary-report,test-report,failed-report,flaky-report'
         if: always()
       - name: Read Test Results and Notify Slack
-        id:
         run: |
           echo "Reading test results..."
           RESULTS=$(cat ctrf/ctrf-report.json)
@@ -105,7 +104,7 @@ jobs:
 
           mention=""
           if [ "$failed" -gt 0 ] || [ "$flaky" -gt 0 ]; then
-            mention="<@${{secrets.SLACK_USER}}>"
+            mention="<@${{secrets.SLACK_USER}}>, kindly check the failed/flaky tests."
           fi
 
           curl -X POST -H 'Content-type: application/json' \
