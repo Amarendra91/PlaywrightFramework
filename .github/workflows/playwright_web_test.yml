@@ -4,21 +4,19 @@ run-name: E2E Web tests
 on:
   push:
     branches: [main, master]
-  # pull_request:
-  #   branches: [main, master]
 
   workflow_dispatch:
     inputs:
-      env:
-        description: 'Choose environment'
+      test_env:
+        description: 'Select test environment (demo or dev)'
         required: true
         default: demo
         type: choice
         options:
           - demo
           - dev
-      tag:
-        description: 'Test tag to run (Smoke or Regression)'
+      test_tag:
+        description: 'Select test tag (Smoke or Regression)'
         required: true
         default: Smoke
         type: choice
@@ -29,7 +27,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
+    environment: ${{ github.event.inputs.test_env || 'demo' }}
 
     env:
       BASE_URL: ${{ vars.BASE_URL }}
@@ -50,8 +48,8 @@ jobs:
         id: tag
         run: |
           # Use tag from workflow_dispatch or default to 'Smoke'
-          if [ -n "${{ github.event.inputs.tag }}" ]; then
-            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          if [ -n "${{ github.event.inputs.test_tag }}" ]; then
+            echo "tag=${{ github.event.inputs.test_tag }}" >> $GITHUB_OUTPUT
           else
             echo "tag=Smoke" >> $GITHUB_OUTPUT
           fi
