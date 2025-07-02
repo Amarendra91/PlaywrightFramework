@@ -76,3 +76,38 @@ jobs:
           # Order reports with the most important information first
           report-order: 'summary-report,test-report,failed-report,flaky-report'
         if: always()
+      - name: Read Test Results and Notify Slack
+        id:
+        run: |
+          echo "Reading test results..."
+          RESULTS=$(cat ctrf/ctrf-report.json)
+          TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
+          PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
+          FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
+          FLAKY=$(jq '[.. | select(.status? == "flaky")] | length' <<< "$RESULTS")
+
+          STATUS="✅ PASSED"
+          if [[ $FAILED -gt 0 ]]; then
+            STATUS="❌ FAILED"
+          elif [[ $FLAKY -gt 0 ]]; then
+            STATUS="⚠️ FLAKY"
+          fi
+
+          REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          SLACK_MESSAGE="*🎭 Playwright Web Test Report*\n
+          *Status:* $STATUS\n
+          *Total Tests:* $TOTAL\n
+          *Passed:* $PASSED\n
+          *Failed:* $FAILED\n
+          *Flaky:* $FLAKY\n
+          *Report:* <$REPORT_URL|View Workflow Run>\n"
+
+          mention=""
+          if [ "$failed" -gt 0 ] || [ "$flaky" -gt 0 ]; then
+            mention="<@${{secrets.SLACK_USER}}>"
+          fi
+
+          curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\": \"$SLACK_MESSAGE\"}" \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
