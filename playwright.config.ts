@@ -26,10 +26,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [
-        ['html'],
-        ['playwright-ctrf-json-reporter', { outputFile: './ctrf/result.json' }],
-      ]
+    ? [['html'], ['playwright-ctrf-json-reporter', {}]]
     : [['html', { open: 'always' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
