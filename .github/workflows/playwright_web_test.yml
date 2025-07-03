@@ -1,4 +1,4 @@
-name: playwright_test
+name: playwright_web_test
 run-name: E2E Web tests
 
 on:
