@@ -81,7 +81,7 @@ jobs:
           echo "Reading report..."
           FILE=$(find ./ctrf -name "*.json" | head -n 1)
           RESULTS=$(cat "$FILE")
-          TOTAL=$(jq '[.suites?[]?.specs? // | length] | add' <<< "$RESULTS")
+          TOTAL=$(jq '[.suites?[]?.specs? // [] | length] | add' <<< "$RESULTS")
           PASSED=$(jq '[.. | objects | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | objects | select(.status? == "failed")] | length' <<< "$RESULTS")
           SKIPPED=$(jq '[.. | objects | select(.status? == "skipped")] | length' <<< "$RESULTS")
