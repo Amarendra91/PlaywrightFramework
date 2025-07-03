@@ -114,15 +114,15 @@ jobs:
           |-----------|---------|
           | Test Type |  Count  |
           |-----------|---------|
-          | ✅ Passed | $PADDED_PASSED |
+          | ✅ Passed | $PADDED_PASSED 
           |-----------|---------|
-          | ❌ Failed | $PADDED_FAILED |
+          | ❌ Failed | $PADDED_FAILED 
           |-----------|---------|
-          | ⚠️ Skipped | $PADDED_SKIPPED |
+          | ⚠️ Skipped | $PADDED_SKIPPED 
           |-----------|---------|
-          | 🤷 Flaky  | $PADDED_FLAKY |
+          | 🤷 Flaky  | $PADDED_FLAKY 
           |-----------|---------|
-          | 📊 Total  | $PADDED_TOTAL |
+          | 📊 Total  | $PADDED_TOTAL 
           |-----------|---------|
           \`\`\`
 
