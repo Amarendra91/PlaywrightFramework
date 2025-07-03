@@ -80,7 +80,7 @@ jobs:
         run: |
           echo "Reading report.."
           REPORT_FILE=$({{ github.workspace }}/ctrf/*.json | head -n 1)
-          RESULTS=$cat "$REPORT_FILE"
+          RESULTS=cat "$REPORT_FILE"
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
