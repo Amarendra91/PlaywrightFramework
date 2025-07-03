@@ -1,4 +1,4 @@
-name: playwright_web_test
+name: playwright_test
 run-name: E2E Web tests
 
 on:
@@ -96,7 +96,7 @@ jobs:
 
           REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          SLACK_MESSAGE="*🎭 Playwright Web Test Result*\n
+          SLACK_MESSAGE="*🎭 Playwright Web Test Result - ${{ github.run_number }}*\n
           *Status:* $STATUS\n
           *Total Tests:* $TOTAL\n
           *Passed:* $PASSED\n
