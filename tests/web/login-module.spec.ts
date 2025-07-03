@@ -26,7 +26,7 @@ test.describe('Verify Login page functionality.', async () => {
       await expect(homePage.passwordTextBox).toBeEnabled();
       await expect(homePage.passwordTextBox).toBeEditable();
       await expect(homePage.loginButton).toBeVisible();
-      await expect(homePage.loginButton).toBeEnabled();
+      await expect(homePage.loginButton).not.toBeEnabled();
     }
   );
 

@@ -27,7 +27,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.test_env || 'Demo' }}
+    environment: ${{ github.event.inputs.test_env || 'demo' }}
 
     env:
       BASE_URL: ${{ vars.BASE_URL }}
