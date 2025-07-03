@@ -68,10 +68,7 @@ jobs:
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
         with:
-          name: result
-          path: ./test-results/
-          format: playwright
-          report-path: './ctrf/result.json'
+          report-path: './ctrf/*.json'
           summary-report: true
           failed-report: true
           flaky-report: true
@@ -82,7 +79,7 @@ jobs:
       - name: Read Test Results and Notify Slack
         run: |
           echo "Reading report..."
-          RESULTS='./ctrf/result.json'
+          RESULTS=  $({{ github.workspace }}/ctrf/*.json | head -n 1)
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
