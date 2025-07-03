@@ -83,7 +83,7 @@ jobs:
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
-          SKIPPED = $(jq '[.. | select(.status? == "skipped")] | length' <<< "$RESULTS")
+          SKIPPED= $(jq '[.. | select(.status? == "skipped")] | length' <<< "$RESULTS")
           FLAKY=$(jq '[.. | select(.status? == "flaky")] | length' <<< "$RESULTS")
 
           STATUS="✅ PASSED"
