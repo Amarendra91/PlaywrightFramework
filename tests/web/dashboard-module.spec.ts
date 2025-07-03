@@ -13,7 +13,7 @@ test.describe('Verify Dashbaoard page functionality.', async () => {
       });
 
       await test.step('Verify user dropdown menu functionality on page header.', async () => {
-        await expect(dashboardpage.userIconMenu).not.toBeVisible();
+        await expect(dashboardpage.userIconMenu).toBeVisible();
         await expect(dashboardpage.userIconMenu).toBeEnabled();
       });
 
