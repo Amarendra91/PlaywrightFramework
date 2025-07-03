@@ -91,24 +91,35 @@ jobs:
           if [[ $FAILED -gt 0 ]]; then
             STATUS="❌ FAILED"
           elif [[ $FLAKY -gt 0 ]]; then
-            STATUS="⚠️ Passed with FLAKY test(s)"
+            STATUS ="🤷 FLAKY test(s) identified." 
           fi
 
           REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          SLACK_MESSAGE="*🎭 Playwright Web Test Result - ${{ github.run_number }}*\n
-          *Status:* $STATUS\n
-          *Total Tests:* $TOTAL\n
-          *Passed:* $PASSED\n
-          *Failed:* $FAILED\n
-          *Skipped:* $SKIPPED\n
-          *Flaky:* $FLAKY\n
-          *Report:* <$REPORT_URL|View Workflow Run>\n"
-
-          mention=""
-          if [ "$failed" -gt 0 ] || [ "$flaky" -gt 0 ]; then
-            mention="<@${{secrets.SLACK_USER}}>, kindly check the failed or flaky tests."
+          MENTION=""
+          if [ "$FAILED" -gt 0 ] || [ "$FLAKY" -gt 0 ]; then
+            MENTION="<@${{secrets.SLACK_USER}}>, kindly check the failed or flaky tests."
           fi
+
+          SLACK_MESSAGE=$(cat <<EOF
+          *🎯 Web Test Result Summary -${{ github.run_number }}*
+          \`\`\`
+          | Test Type | Count |
+          |-----------|-------|
+          | ✅ Passed | $PASSED |
+          | ❌ Failed | $FAILED |
+          | ⚠️ Skipped | $SKIPPED |
+          | 🤷 Flaky  | $FLAKY |
+          | 📊 Total  | $TOTAL |
+          \`\`\`
+
+          🔗 *Report:* <$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID|View Workflow>
+
+          $MENTION
+          EOF
+          )
+
+
 
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"$SLACK_MESSAGE\"}" \
