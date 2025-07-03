@@ -69,14 +69,14 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1
         with:
           report-path: './ctrf/*.json'
-          summary-report: true
           failed-report: true
           flaky-report: true
           test-report: true
           # Order reports with the most important information first
-          report-order: 'summary-report,test-report,failed-report,flaky-report'
+          report-order: 'test-report,failed-report,flaky-report'
         if: always()
       - name: Read Test Results and Notify Slack
+        if: always()
         run: |
           echo "Reading report..."
           FILE=$(find ./ctrf -name "*.json" | head -n 1)
@@ -131,8 +131,6 @@ jobs:
           $MENTION
           EOF
           )
-
-
 
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"$SLACK_MESSAGE\"}" \
