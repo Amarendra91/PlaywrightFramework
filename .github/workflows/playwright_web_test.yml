@@ -79,7 +79,7 @@ jobs:
       - name: Read Test Results and Notify Slack
         run: |
           echo "Reading report.."
-          REPORT_FILE=$(ls "{{ github.workspace }}/ctrf/"*.json | head -n 1)
+          REPORT_FILE=$(ls {{ github.workspace }}/ctrf/*.json | head -n 1)
           RESULTS=$(cat "$REPORT_FILE")
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
@@ -101,6 +101,7 @@ jobs:
           *Total Tests:* $TOTAL\n
           *Passed:* $PASSED\n
           *Failed:* $FAILED\n
+          *Skipped:* $SKIPPED\n
           *Flaky:* $FLAKY\n
           *Report:* <$REPORT_URL|View Workflow Run>\n"
 
