@@ -78,12 +78,8 @@ jobs:
         if: always()
       - name: Read Test Results and Notify Slack
         run: |
-          echo "Reading report from: $REPORT_PATH"
-          if [ ! -f "$REPORT_PATH" ]; then
-            echo "Report not found!"
-            exit 1
-          fi
-          RESULTS=$(find ./ctrf/*.json | head -n 1)
+          echo "Reading report.."
+          RESULTS=  ${{ github.workspace }}/ctrf/*.json | head -n 1
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
