@@ -79,7 +79,8 @@ jobs:
       - name: Read Test Results and Notify Slack
         run: |
           echo "Reading report..."
-          RESULTS=$(cat ${{ github.workspace }}/ctrf/*.json | head -n 1)
+          FILE=$(find ./ctrf -name "*.json" | head -n 1)
+          RESULTS=cat "$FILE"
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
