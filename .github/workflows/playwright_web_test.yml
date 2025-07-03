@@ -87,6 +87,13 @@ jobs:
           SKIPPED=$(jq '.results.summary.skipped' "$FILE")
           FLAKY=$(jq '[.results.tests[] | select(.flaky == true)] | length' "$FILE")
 
+          # Pad numbers with spaces (right-aligned)
+          PADDED_PASSED=$(printf "%3s" "$PASSED")
+          PADDED_FAILED=$(printf "%3s" "$FAILED")
+          PADDED_SKIPPED=$(printf "%2s" "$SKIPPED")
+          PADDED_FLAKY=$(printf "%3s" "$FLAKY")
+          PADDED_TOTAL=$(printf "%3s" "$TOTAL")
+
           STATUS="✅ PASSED"
           if [[ $FAILED -gt 0 ]]; then
             STATUS="❌ FAILED"
@@ -102,15 +109,15 @@ jobs:
           fi
 
           SLACK_MESSAGE=$(cat <<EOF
-          *🎭 Playwright Web Test Result Summary - ${{ github.run_number }}*
+          *🎭 Playwright Web Test Result Summary*
           \`\`\`
           | Test Type |  Count  |
           |-----------|---------|
-          | ✅ Passed | $PASSED |
-          | ❌ Failed | $FAILED |
-          | ⚠️ Skipped | $SKIPPED |
-          | 🤷 Flaky  | $FLAKY |
-          | 📊 Total  | $TOTAL |
+          | ✅ Passed | $PADDED_PASSED |
+          | ❌ Failed | $PADDED_FAILED |
+          | ⚠️ Skipped | $PADDED_SKIPPED |
+          | 🤷 Flaky  | $PADDED_FLAKY |
+          | 📊 Total  | $PADDED_TOTAL |
           \`\`\`
 
           🔗 *Report:* <$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID|View Workflow>
