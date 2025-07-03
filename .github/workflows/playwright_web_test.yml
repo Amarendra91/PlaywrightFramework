@@ -102,10 +102,10 @@ jobs:
           fi
 
           SLACK_MESSAGE=$(cat <<EOF
-          *🎯 Web Test Result Summary -${{ github.run_number }}*
+          *🎭 Playwright Web Test Result Summary - ${{ github.run_number }}*
           \`\`\`
-          | Test Type | Count |
-          |-----------|-------|
+          | Test Type |  Count  |
+          |-----------|---------|
           | ✅ Passed | $PASSED |
           | ❌ Failed | $FAILED |
           | ⚠️ Skipped | $SKIPPED |
