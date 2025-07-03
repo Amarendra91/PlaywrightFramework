@@ -110,6 +110,8 @@ jobs:
 
           SLACK_MESSAGE=$(cat <<EOF
           *🎭 Playwright Web Test Result Summary: Test Run ${{ github.run_number }}*
+
+          *Status: $STATUS*
           \`\`\`
           |-----------|---------|
           | Test Type |  Count  |
