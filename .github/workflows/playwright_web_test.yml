@@ -81,10 +81,10 @@ jobs:
           echo "Reading report.."
           RESULTS=  $({{ github.workspace }}/ctrf/*.json | head -n 1)
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
-          PASSED=$(jq '[.. | select(.status? == "Passed")] | length' <<< "$RESULTS")
-          FAILED=$(jq '[.. | select(.status? == "Failed")] | length' <<< "$RESULTS")
-          SKIPPED= $(jq '[.. | select(.status? == "Skipped")] | length' <<< "$RESULTS")
-          FLAKY=$(jq '[.. | select(.status? == "Flaky")] | length' <<< "$RESULTS")
+          PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
+          FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
+          SKIPPED= $(jq '[.. | select(.status? == "skipped")] | length' <<< "$RESULTS")
+          FLAKY=$(jq '[.. | select(.status? == "flaky")] | length' <<< "$RESULTS")
 
           STATUS="✅ PASSED"
           if [[ $FAILED -gt 0 ]]; then
