@@ -79,7 +79,7 @@ jobs:
       - name: Read Test Results and Notify Slack
         run: |
           echo "Reading test results..."
-          RESULTS=$(ls ./ctrf/*.json | head -n 1)
+          RESULTS=$(find ./ctrf/*.json | head -n 1)
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
           FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
