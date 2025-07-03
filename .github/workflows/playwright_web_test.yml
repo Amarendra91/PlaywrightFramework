@@ -76,12 +76,11 @@ jobs:
           # Order reports with the most important information first
           report-order: 'summary-report,test-report,failed-report,flaky-report'
         if: always()
-      - name: Fix file permission if needed
-        run: chmod 644 ./ctrf/ctrf-report.json
       - name: Read Test Results and Notify Slack
         run: |
           echo "Reading report..."
           FILE=$(find ./ctrf -name "*.json" | head -n 1)
+          chmod 644 "$FILE"
           RESULTS=cat "$FILE"
           TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
           PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
