@@ -80,10 +80,13 @@ jobs:
         run: |
           echo "Reading report.."
           RESULTS=  $({{ github.workspace }}/ctrf/*.json | head -n 1)
-          TOTAL=$(jq '.suites[].specs | length' <<< "$RESULTS")
-          PASSED=$(jq '[.. | select(.status? == "passed")] | length' <<< "$RESULTS")
-          FAILED=$(jq '[.. | select(.status? == "failed")] | length' <<< "$RESULTS")
-          FLAKY=$(jq '[.. | select(.status? == "flaky")] | length' <<< "$RESULTS")
+
+          # Extract key values using jq
+          TOTAL=$(jq '.stats.tests' "$RESULTS")
+          PASSED=$(jq '.stats.passes' "$RESULTS")
+          FAILED=$(jq '.stats.failures' "$RESULTS")
+          SKIPPED=$(jq '.stats.skipped // 0' "$RESULTS")
+          FLAKY=$(jq '.stats.flaky | length' "$RESULTS" 2>/dev/null || echo 0)
 
           STATUS="✅ PASSED"
           if [[ $FAILED -gt 0 ]]; then
@@ -94,17 +97,18 @@ jobs:
 
           REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          SLACK_MESSAGE="*🎭 Playwright Web Test Report*\n
+          SLACK_MESSAGE="*🎭 Playwright Web Test Execution Report*\n
           *Status:* $STATUS\n
           *Total Tests:* $TOTAL\n
           *Passed:* $PASSED\n
           *Failed:* $FAILED\n
+          *Skipped:* $SKIPPED\n
           *Flaky:* $FLAKY\n
           *Report:* <$REPORT_URL|View Workflow Run>\n"
 
           mention=""
           if [ "$failed" -gt 0 ] || [ "$flaky" -gt 0 ]; then
-            mention="<@${{secrets.SLACK_USER}}>, kindly check the failed/flaky tests."
+            mention="<@${{secrets.SLACK_USER}}>, kindly check the failed or flaky tests."
           fi
 
           curl -X POST -H 'Content-type: application/json' \
