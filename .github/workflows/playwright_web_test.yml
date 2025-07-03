@@ -109,15 +109,21 @@ jobs:
           fi
 
           SLACK_MESSAGE=$(cat <<EOF
-          *🎭 Playwright Web Test Result Summary*
+          *🎭 Playwright Web Test Result Summary: Test Run ${{ github.run_number }}*
           \`\`\`
+          |-----------|---------|
           | Test Type |  Count  |
           |-----------|---------|
           | ✅ Passed | $PADDED_PASSED |
+          |-----------|---------|
           | ❌ Failed | $PADDED_FAILED |
+          |-----------|---------|
           | ⚠️ Skipped | $PADDED_SKIPPED |
+          |-----------|---------|
           | 🤷 Flaky  | $PADDED_FLAKY |
+          |-----------|---------|
           | 📊 Total  | $PADDED_TOTAL |
+          |-----------|---------|
           \`\`\`
 
           🔗 *Report:* <$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID|View Workflow>
