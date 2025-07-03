@@ -62,8 +62,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: ctrf-report
-          path: ./ctrf/*.json
+          name: playwright-report
+          path: playwright-report/
           retention-days: 30
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
@@ -81,11 +81,11 @@ jobs:
           echo "Reading report..."
           FILE=$(find ./ctrf -name "*.json" | head -n 1)
           RESULTS=$(cat "$FILE")
-          TOTAL=$(jq '[.suites[]?.specs[]?.tests[]?] | length' <<< "$RESULTS")
-          PASSED=$(jq '[.suites[]?.specs[]?.tests[]? | select(.status == "passed")] | length' <<< "$RESULTS")
-          FAILED=$(jq '[.suites[]?.specs[]?.tests[]? | select(.status == "failed")] | length' <<< "$RESULTS")
-          SKIPPED=$(jq '[.suites[]?.specs[]?.tests[]? | select(.status == "skipped")] | length' <<< "$RESULTS")
-          FLAKY=$(jq '.stats.flaky // [] | length' <<< "$RESULTS")
+          TOTAL=$(jq '.results.summary.tests' "$FILE")
+          PASSED=$(jq '.results.summary.passed' "$FILE")
+          FAILED=$(jq '.results.summary.failed' "$FILE")
+          SKIPPED=$(jq '.results.summary.skipped' "$FILE")
+          FLAKY=$(jq '[.results.tests[] | select(.flaky == true)] | length' "$FILE")
 
           STATUS="✅ PASSED"
           if [[ $FAILED -gt 0 ]]; then
