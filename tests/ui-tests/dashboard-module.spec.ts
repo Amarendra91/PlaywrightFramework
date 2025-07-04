@@ -1,9 +1,9 @@
 import { test, expect } from '../../fixtures/hooks-fixture';
-import dashboardModuleTestData from '../../test-data/dashboard-module.json';
+import dashboardModuleTestData from '../../test-data/ui-data/dashboard-module.json';
 
 test.describe('Verify Dashbaoard page functionality.', async () => {
   test(
-    '[DASHBOARD] Verify user navigated to OrangeHRM dashbaord page and logout from OrangeHRM application.',
+    '[Dashboard] Verify user navigated to OrangeHRM dashbaord page and logout from OrangeHRM application.',
     { tag: '@Smoke' },
     async ({ bypassLoginPage, dashboardpage, homePage }) => {
       await test.step('Verify header title on dashboard page.', async () => {

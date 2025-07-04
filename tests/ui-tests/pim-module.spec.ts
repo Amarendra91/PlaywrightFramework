@@ -1,5 +1,5 @@
 import { test, expect } from '../../fixtures/hooks-fixture';
-import pimModuleTestData from '../../test-data/pim-module.json';
+import pimModuleTestData from '../../test-data/ui-data/pim-module.json';
 
 test.describe('Verify PIM page functionality.', async () => {
   test(

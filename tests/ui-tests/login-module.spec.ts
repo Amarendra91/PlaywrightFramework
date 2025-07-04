@@ -1,5 +1,5 @@
 import { test, expect } from '../../fixtures/hooks-fixture';
-import loginModuleTestData from '../../test-data/login-module.json';
+import loginModuleTestData from '../../test-data/ui-data/login-module.json';
 
 /**
  * This test is to ignore global set up.
