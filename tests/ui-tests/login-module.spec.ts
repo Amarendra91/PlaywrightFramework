@@ -12,7 +12,7 @@ test.describe('Verify Login page functionality.', async () => {
   });
 
   test(
-    'Verify OrangeHRM login page.',
+    '[Login] Verify OrangeHRM login page.',
     { tag: '@Smoke' },
     async ({ homePage }) => {
       await expect(homePage.brand).toBeVisible();
@@ -31,7 +31,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in with an incorrect username and correct password.',
+    '[Login] Verify user cannot log in with an incorrect username and correct password.',
     { tag: '@Regression' },
     async ({ homePage, cryptoUtils }) => {
       const correctPassword: string = cryptoUtils.decryptData(
@@ -53,7 +53,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in with an correct username and incorrect password.',
+    '[Login] Verify user cannot log in with an correct username and incorrect password.',
     { tag: '@Regression' },
     async ({ homePage, cryptoUtils }) => {
       const correctUsername: string = cryptoUtils.decryptData(
@@ -76,7 +76,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in with an incorrect username and incorrect password.',
+    '[Login] Verify user cannot log in with an incorrect username and incorrect password.',
     { tag: '@Regression' },
     async ({ homePage }) => {
       await test.step('Initiate Login with credentials.', async () => {
@@ -95,7 +95,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in with out providing both username and password.',
+    '[Login] Verify user cannot log in with out providing both username and password.',
     { tag: '@Regression' },
     async ({ homePage, cryptoUtils }) => {
       const correctUsername: string = cryptoUtils.decryptData(
@@ -129,7 +129,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in by only providing username.',
+    '[Login] Verify user cannot log in by only providing username.',
     { tag: '@Regression' },
     async ({ homePage, cryptoUtils }) => {
       const correctUsername: string = cryptoUtils.decryptData(
@@ -155,7 +155,7 @@ test.describe('Verify Login page functionality.', async () => {
   );
 
   test(
-    'Verify user cannot log in by only providing password.',
+    '[Login] Verify user cannot log in by only providing password.',
     { tag: '@Regression' },
     async ({ homePage, cryptoUtils }) => {
       const correctUsername: string = cryptoUtils.decryptData(

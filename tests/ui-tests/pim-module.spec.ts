@@ -3,7 +3,7 @@ import pimModuleTestData from '../../test-data/pim-module.json';
 
 test.describe('Verify PIM page functionality.', async () => {
   test(
-    'Verify a new employee added successfully in PIM module.',
+    '[PIM] Verify a new employee added successfully in PIM module.',
     { tag: '@Regression' },
     async ({ bypassLoginPage, leftNavPage, pimPage, page }) => {
       await test.step('Navigate to PIM page from left hand navigation.', async () => {

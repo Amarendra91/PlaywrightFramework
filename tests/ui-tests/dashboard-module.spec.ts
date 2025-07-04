@@ -3,7 +3,7 @@ import dashboardModuleTestData from '../../test-data/dashboard-module.json';
 
 test.describe('Verify Dashbaoard page functionality.', async () => {
   test(
-    'Verify user navigated to OrangeHRM dashbaord page and logout from OrangeHRM application.',
+    '[DASHBOARD] Verify user navigated to OrangeHRM dashbaord page and logout from OrangeHRM application.',
     { tag: '@Smoke' },
     async ({ bypassLoginPage, dashboardpage, homePage }) => {
       await test.step('Verify header title on dashboard page.', async () => {
