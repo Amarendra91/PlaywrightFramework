@@ -31,7 +31,6 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     screenshot: 'only-on-failure',
@@ -54,6 +53,7 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
+        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
@@ -65,6 +65,7 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Firefox'],
+        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
