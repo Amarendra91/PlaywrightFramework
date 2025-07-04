@@ -109,7 +109,7 @@ jobs:
           fi
 
           SLACK_MESSAGE=$(cat <<EOF
-          *Web Test Result Summary (Firefox)_Test Run# ${{ github.run_number }}*
+          *Web Test Result Summary (Firefox)_Test Run # ${{ github.run_number }}*
           *Status: $STATUS*
           \`\`\`
           |-----------|---------|
