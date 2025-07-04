@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "web_test_demo_chrome": "cross-env ENV_NAME=demo npx playwright test --project=web_chrome",
-    "web_test_dev_chrome": "cross-env ENV_NAME=dev npx playwright test --project=web_chrome",
-    "web_test_demo_firfox": "cross-env ENV_NAME=demo npx playwright test --project=web_firefox",
-    "web_test_dev_firefox": "cross-env ENV_NAME=dev npx playwright test --project=web_firefox",
-    "web_test_ui_mode_chrome": "npx playwright test --project=web_chrome --ui",
-    "web_test_ui_mode_firefox": "npx playwright test --project=web_firefox --ui",
-    "api_test_ui_mode": "npx playwright test --project=api --ui"
+    "web_test_demo_chrome": "cross-env ENV_NAME=demo npx playwright test --project=ui_test_chrome",
+    "web_test_dev_chrome": "cross-env ENV_NAME=dev npx playwright test --project=ui_test_chrome",
+    "web_test_demo_firfox": "cross-env ENV_NAME=demo npx playwright test --project=ui_test_firefox",
+    "web_test_dev_firefox": "cross-env ENV_NAME=dev npx playwright test --project=ui_test_firefox",
+    "web_test_ui_mode_chrome": "npx playwright test --project=ui_test_chrome --ui",
+    "web_test_ui_mode_firefox": "npx playwright test --project=ui_test_firefox --ui",
+    "api_test_ui_mode": "npx playwright test --project=api_test --ui"
   },
   "keywords": [],
   "author": "",

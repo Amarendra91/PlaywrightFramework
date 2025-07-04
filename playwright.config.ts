@@ -48,7 +48,7 @@ export default defineConfig({
 
     // Web tests project
     {
-      name: 'ui_chrome',
+      name: 'ui_test_chrome',
       testDir: './tests/ui-tests/',
       testMatch: /.*\.spec\.ts/,
       dependencies: ['setup'],
@@ -59,7 +59,7 @@ export default defineConfig({
     },
 
     {
-      name: 'ui_firefox',
+      name: 'ui_test_firefox',
       testDir: './tests/ui-tests/',
       testMatch: /.*\.spec\.ts/,
       dependencies: ['setup'],
@@ -70,7 +70,7 @@ export default defineConfig({
     },
     // API tests project
     {
-      name: 'api',
+      name: 'api_test',
       testDir: './tests/api-tests/',
       testMatch: /.*\.spec\.ts/,
     },
