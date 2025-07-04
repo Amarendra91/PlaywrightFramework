@@ -109,8 +109,7 @@ jobs:
           fi
 
           SLACK_MESSAGE=$(cat <<EOF
-          *🎭 Playwright Web Test Result Summary: Test Run ${{ github.run_number }}*
-
+          *Web Test Result Summary(Chrome)_Test Run# ${{ github.run_number }}*
           *Status: $STATUS*
           \`\`\`
           |-----------|---------|
