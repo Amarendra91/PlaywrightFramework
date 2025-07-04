@@ -48,12 +48,23 @@ export default defineConfig({
 
     // Web tests project
     {
-      name: 'web',
+      name: 'web_chrome',
       testDir: './tests/web/',
       testMatch: /.*\.spec\.ts/,
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
+        storageState: './.auth/auth.json',
+      },
+    },
+
+    {
+      name: 'web_firefox',
+      testDir: './tests/web/',
+      testMatch: /.*\.spec\.ts/,
+      dependencies: ['setup'],
+      use: {
+        ...devices['Desktop Firefox'],
         storageState: './.auth/auth.json',
       },
     },
