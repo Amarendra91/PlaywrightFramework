@@ -1,5 +1,5 @@
-name: playwright_web_test
-run-name: E2E Web tests
+name: playwright_web_test_chrome
+run-name: E2E Web Tests
 
 on:
   push:
@@ -57,7 +57,7 @@ jobs:
       - name: Run Playwright tests
         run: |
           echo "Running tests with tag: ${{ steps.tag.outputs.tag }}"
-          SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web --grep "@${{ steps.tag.outputs.tag }}"
+          SECRET_KEY=${{ secrets.SECRET_KEY }} npx playwright test --project=web_chrome --grep "@${{ steps.tag.outputs.tag }}"
       - name: Upload Report
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
