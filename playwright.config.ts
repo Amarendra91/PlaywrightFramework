@@ -43,6 +43,7 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
+      use: { baseURL: process.env.BASE_URL },
     },
 
     // Web tests project
@@ -53,7 +54,6 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
@@ -65,7 +65,6 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
