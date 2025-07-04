@@ -54,6 +54,7 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
+        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
@@ -65,6 +66,7 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Firefox'],
+        baseURL: process.env.BASE_URL,
         storageState: './.auth/auth.json',
       },
     },
