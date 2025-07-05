@@ -109,9 +109,9 @@ Slack message includes:
 
 **Example Screenshot:**
 
-![Slack Report Screenshot](./assets/slack-screenshot.png)
+**_All Tests Passed_**
 
-> _Note: Add your actual Slack screenshot in `assets/slack-screenshot.png` path._
+**_Any Test(s) failed_**
 
 ---
 
