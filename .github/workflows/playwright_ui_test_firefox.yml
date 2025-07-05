@@ -1,5 +1,5 @@
-name: playwright_web_test_firefox
-run-name: E2E Web Tests
+name: playwright_ui_test_firefox
+run-name: E2E UI Tests
 
 on:
   push:
