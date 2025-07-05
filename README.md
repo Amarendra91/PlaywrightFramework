@@ -28,7 +28,7 @@ Ensure you have the following installed before getting started:
 > **Note:** UI tests require a secret key (`SECRET_KEY`) to decrypt sensitive test data. This key must be:
 >
 > - Local execution via CLI (e.g. SECRET_KEY=`SECRET_KEY` npm run UI_test_demo_chrome_headless)
-> - Use a `SECRET_KEY` of your choice for encryption and decryption mechanism
+> - Set up a `SECRET_KEY` of your choice for encryption and decryption mechanism
 > - Added as a GitHub secret when running in CI/CD pipeline
 
 ---
@@ -54,10 +54,10 @@ npm install
 npx playwright install
 ```
 
-### 4. Run tests locally
+### 4. Run all tests locally(UI and API)
 
 ```bash
-npx playwright test
+SECRET_KEY=`SECRET_KEY` npx playwright test
 ```
 
 > Test results will be available in the `playwright-report` folder.
