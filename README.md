@@ -95,7 +95,7 @@ Tests are automatically triggered via GitHub Actions on every push to `main`` br
 - Uploads HTML report as an artifact
 - Sends a summary of results to Slack
 
-> Sample Workflow: `.github/workflows/playwright_web_test_chrome.yml`
+> Sample Workflow: `.github/workflows/playwright_ui_test_chrome.yml`
 
 ### ✅ Sample Test Report in Slack
 
