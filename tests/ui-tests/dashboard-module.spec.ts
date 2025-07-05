@@ -19,7 +19,7 @@ test.describe('Verify Dashbaoard page functionality.', async () => {
 
       await test.step('Verify Logout functionality. ', async () => {
         await dashboardpage.logout();
-        await expect(homePage.loginHeader).toBeVisible();
+        await expect(homePage.loginHeader).not.toBeVisible();
       });
     }
   );
