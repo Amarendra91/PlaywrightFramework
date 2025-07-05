@@ -110,10 +110,10 @@ Slack message includes:
 **Example Screenshot:**
 
 **_All Tests Passed_**
-![Test Execution Summary](image1.png)
+![Test Execution Summary](slack-screenshot1.png)
 
 **_Any Test(s) failed_**
-![Test Execution Summary](image2.png)
+![Test Execution Summary](slack-screenshot2.png)
 
 ---
 

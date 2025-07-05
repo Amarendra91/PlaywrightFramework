@@ -7,4 +7,3 @@ node_modules/
 /playwright/.cache/
 /env-files/
 /.auth
-/assets
