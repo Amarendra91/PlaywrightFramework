@@ -102,9 +102,10 @@ Tests are automatically triggered via GitHub Actions on every push to `main`` br
 Slack message includes:
 
 - Test suite title
-- Total, passed, failed, skipped counts
-- Direct link to HTML report
+- Test run number
+- Total, passed, failed, skipped, flaky counts
 - Mention a user if failures occur
+- Direct link to HTML report
 
 **Example Screenshot:**
 
