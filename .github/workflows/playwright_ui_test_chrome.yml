@@ -1,4 +1,4 @@
-name: playwright_UI_test_chrome
+name: playwright_ui_test_chrome
 run-name: E2E UI Tests
 
 on:
