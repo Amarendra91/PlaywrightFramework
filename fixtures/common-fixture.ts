@@ -1,12 +1,12 @@
 import { test as basetest } from './pom-fixture';
-import CryptoUtils from '../utils/CryptoUtils';
+import CommonUtils from '../utils/CommonUtils';
 
 type CommonFixtureType = {
-  cryptoUtils: CryptoUtils;
+  commonUtils: CommonUtils;
 };
 
 export const test = basetest.extend<CommonFixtureType>({
-  cryptoUtils: async ({}, use) => {
-    await use(new CryptoUtils());
+  commonUtils: async ({}, use) => {
+    await use(new CommonUtils());
   },
 });

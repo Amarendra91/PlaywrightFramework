@@ -33,8 +33,8 @@ test.describe('Verify Login page functionality.', async () => {
   test(
     '[Login] Verify user cannot log in with an incorrect username and correct password.',
     { tag: '@Regression' },
-    async ({ homePage, cryptoUtils }) => {
-      const correctPassword: string = cryptoUtils.decryptData(
+    async ({ homePage, commonUtils }) => {
+      const correctPassword: string = commonUtils.decryptData(
         process.env.PASSWORD!
       );
       await test.step('Initiate Login with credentials.', async () => {
@@ -55,8 +55,8 @@ test.describe('Verify Login page functionality.', async () => {
   test(
     '[Login] Verify user cannot log in with an correct username and incorrect password.',
     { tag: '@Regression' },
-    async ({ homePage, cryptoUtils }) => {
-      const correctUsername: string = cryptoUtils.decryptData(
+    async ({ homePage, commonUtils }) => {
+      const correctUsername: string = commonUtils.decryptData(
         process.env.USER_NAME!
       );
 
@@ -97,11 +97,11 @@ test.describe('Verify Login page functionality.', async () => {
   test(
     '[Login] Verify user cannot log in with out providing both username and password.',
     { tag: '@Regression' },
-    async ({ homePage, cryptoUtils }) => {
-      const correctUsername: string = cryptoUtils.decryptData(
+    async ({ homePage, commonUtils }) => {
+      const correctUsername: string = commonUtils.decryptData(
         process.env.USER_NAME!
       );
-      const correctPassword: string = cryptoUtils.decryptData(
+      const correctPassword: string = commonUtils.decryptData(
         process.env.PASSWORD!
       );
 
@@ -131,11 +131,11 @@ test.describe('Verify Login page functionality.', async () => {
   test(
     '[Login] Verify user cannot log in by only providing username.',
     { tag: '@Regression' },
-    async ({ homePage, cryptoUtils }) => {
-      const correctUsername: string = cryptoUtils.decryptData(
+    async ({ homePage, commonUtils }) => {
+      const correctUsername: string = commonUtils.decryptData(
         process.env.USER_NAME!
       );
-      const correctPassword: string = cryptoUtils.decryptData(
+      const correctPassword: string = commonUtils.decryptData(
         process.env.PASSWORD!
       );
       await test.step('Initiate Login with only username credentials.', async () => {
@@ -157,11 +157,11 @@ test.describe('Verify Login page functionality.', async () => {
   test(
     '[Login] Verify user cannot log in by only providing password.',
     { tag: '@Regression' },
-    async ({ homePage, cryptoUtils }) => {
-      const correctUsername: string = cryptoUtils.decryptData(
+    async ({ homePage, commonUtils }) => {
+      const correctUsername: string = commonUtils.decryptData(
         process.env.USER_NAME!
       );
-      const correctPassword: string = cryptoUtils.decryptData(
+      const correctPassword: string = commonUtils.decryptData(
         process.env.PASSWORD!
       );
       await test.step('Initiate Login with only password credentials.', async () => {
