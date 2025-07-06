@@ -1,4 +1,4 @@
-import { test as baseTest } from './common-fixture';
+import { test as baseTest } from './crypto-fixture';
 
 type HooksFixtureType = {
   bypassLoginPage: any;
