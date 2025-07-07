@@ -1,0 +1,43 @@
+{
+  "content_type": "application/json; charset=utf-8",
+  "booking_details_response_fn_key": "firstname",
+  "booking_details_response_ln_key": "lastname",
+  "create_booking_request_payload_data": {
+    "firstname": "John",
+    "lastname": "Adam",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-07-01",
+      "checkout": "2025-07-03"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  "create_booking_response_booking_key": "booking",
+  "full_booking_update_payload1": {
+    "firstname": "Jacob",
+    "lastname": "Miller",
+    "totalprice": 500,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-06-22",
+      "checkout": "2025-06-30"
+    },
+    "additionalneeds": "Lunch"
+  },
+  "full_booking_update_payload2": {
+    "firstname": "Jemie",
+    "lastname": "Clark",
+    "totalprice": 700,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-06-23",
+      "checkout": "2025-06-29"
+    },
+    "additionalneeds": "Dinner"
+  },
+  "partial_booking_update_payload": {
+    "firstname": "Sean",
+    "lastname": "Martin"
+  }
+}
