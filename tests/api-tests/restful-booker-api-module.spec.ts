@@ -17,7 +17,7 @@ let currentBookingDetailsResp: any;
 let bookingId: any;
 let tokenValue: any;
 
-test.describe('Validate all booking realated APIs', async () => {
+test.describe.serial('Validate all booking realated APIs', async () => {
   test(
     '[Booking] Verify all booking Id(s) retrieved successfully using GET API endpoint.',
     { tag: '@Smoke' },
