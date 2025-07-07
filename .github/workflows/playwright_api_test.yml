@@ -99,7 +99,7 @@ jobs:
           if [[ $FAILED -gt 0 ]]; then
             STATUS="❌ FAILED"
           elif [[ $FLAKY -gt 0 ]]; then
-            STATUS ="🤷 FLAKY test(s) identified." 
+            STATUS ="🍂 FLAKY test(s) identified." 
           fi
 
           REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -120,9 +120,9 @@ jobs:
           |-----------|---------|
           | ❌ Failed | $PADDED_FAILED 
           |-----------|---------|
-          | ⚠️ Skipped | $PADDED_SKIPPED 
+          | ⏭️ Skipped | $PADDED_SKIPPED 
           |-----------|---------|
-          | 🤷 Flaky  | $PADDED_FLAKY 
+          | 🍂 Flaky  | $PADDED_FLAKY 
           |-----------|---------|
           | 📊 Total  | $PADDED_TOTAL 
           |-----------|---------|
