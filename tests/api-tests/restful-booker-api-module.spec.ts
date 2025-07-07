@@ -15,6 +15,7 @@ let partialUpdatedBookingJsonResp: any;
 let deletedBookingResp: any;
 let currentBookingDetailsResp: any;
 let bookingId: any;
+let tokenValue: any;
 
 test.describe('Validate all booking realated APIs', async () => {
   test(
@@ -144,7 +145,7 @@ test.describe('Validate all booking realated APIs', async () => {
     { tag: '@Regression' },
     async ({ request, commonApiUtils }) => {
       await test.step('Execute PUT API endpoint and store the response into a variable.', async ({}) => {
-        const tokenValue: any = await commonApiUtils.generateAuthToken();
+        tokenValue = await commonApiUtils.generateAuthToken();
         updatedBookingResp = await request.put(
           `${apiPathData.booking_path}/${bookingId}`,
           {
@@ -183,7 +184,7 @@ test.describe('Validate all booking realated APIs', async () => {
     { tag: '@Regression' },
     async ({ request, commonApiUtils }) => {
       await test.step('Execute PATCH API endpoint and store the response into a variable.', async ({}) => {
-        const tokenValue: any = await commonApiUtils.generateAuthToken();
+        tokenValue = await commonApiUtils.generateAuthToken();
         partialUpdatedBookingResp = await request.patch(
           `${apiPathData.booking_path}/${bookingId}`,
           {
@@ -280,7 +281,7 @@ test.describe('Validate all booking realated APIs', async () => {
     '[Booking] Verify booking details deleted successfully for specific booking Id using DELETE API endpoint.',
     { tag: '@Regression' },
     async ({ request, commonApiUtils }) => {
-      const tokenValue: any = await commonApiUtils.generateAuthToken();
+      tokenValue = await commonApiUtils.generateAuthToken();
       await test.step('Execute DELETE API endpoint and store the response into a variable.', async () => {
         deletedBookingResp = await request.delete(
           `${apiPathData.booking_path}/${bookingId}`,
