@@ -15,7 +15,6 @@ let partialUpdatedBookingJsonResp: any;
 let deletedBookingResp: any;
 let currentBookingDetailsResp: any;
 let bookingId: any;
-let tokenValue: any;
 
 test.describe.serial('Validate all booking realated APIs', async () => {
   test(
@@ -145,7 +144,9 @@ test.describe.serial('Validate all booking realated APIs', async () => {
     { tag: '@Regression' },
     async ({ request, commonApiUtils }) => {
       await test.step('Execute PUT API endpoint and store the response into a variable.', async ({}) => {
-        tokenValue = await commonApiUtils.generateAuthToken();
+        const tokenValue: any = await commonApiUtils.generateAuthToken();
+        console.log(tokenValue);
+
         updatedBookingResp = await request.put(
           `${apiPathData.booking_path}/${bookingId}`,
           {
@@ -184,7 +185,7 @@ test.describe.serial('Validate all booking realated APIs', async () => {
     { tag: '@Regression' },
     async ({ request, commonApiUtils }) => {
       await test.step('Execute PATCH API endpoint and store the response into a variable.', async ({}) => {
-        tokenValue = await commonApiUtils.generateAuthToken();
+        const tokenValue: any = await commonApiUtils.generateAuthToken();
         partialUpdatedBookingResp = await request.patch(
           `${apiPathData.booking_path}/${bookingId}`,
           {
