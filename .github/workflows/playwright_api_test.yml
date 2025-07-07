@@ -18,7 +18,7 @@ on:
       test_tag:
         description: 'Select test tag (Smoke or Regression)'
         required: true
-        default: Smoke
+        default: Regression
         type: choice
         options:
           - Smoke
